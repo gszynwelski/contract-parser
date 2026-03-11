@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as pdf from "pdf-parse";
+import * as pdfParse from "pdf-parse";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
@@ -24,7 +24,8 @@ export async function POST(request: NextRequest) {
       const buffer = Buffer.from(arrayBuffer);
 
       try {
-        const data = await pdf(buffer);
+        // @ts-ignore
+        const data = await pdfParse(buffer);
         const text = data.text;
 
         // Basic Extraction Logic
